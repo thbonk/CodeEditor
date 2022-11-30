@@ -46,9 +46,8 @@ extension NSTextView {
             font = NSFont.systemFont(ofSize: 16)
         }
         
+        lineNumberView = LineNumberRulerView(textView: self)
         if let scrollView = enclosingScrollView {
-            lineNumberView = LineNumberRulerView(textView: self)
-            
             scrollView.verticalRulerView = lineNumberView
             scrollView.hasVerticalRuler = true
             scrollView.rulersVisible = true
