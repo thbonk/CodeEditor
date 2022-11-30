@@ -237,13 +237,14 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
       textView.delegate           = context.coordinator
       textView.allowsUndo         = true
       textView.textContainerInset = inset
-      textView.lnv_setUpLineNumberView()
 
       let scrollView = NSScrollView()
       scrollView.hasVerticalScroller = true
       scrollView.documentView = textView
       
       updateTextView(textView)
+        
+      textView.lnv_setUpLineNumberView()
       return scrollView
     }
     
