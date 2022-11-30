@@ -100,7 +100,7 @@ class LineNumberRulerView: NSRulerView {
                 
                 let drawLineNumber = { (lineNumberString:String, y:CGFloat) -> Void in
                     let attString = NSAttributedString(string: lineNumberString, attributes: lineNumberAttributes)
-                    let x = 35 - attString.size().width
+                    let x = 95 - attString.size().width
                     attString.draw(at: NSPoint(x: x, y: relativePoint.y + y))
                 }
                 
@@ -136,9 +136,9 @@ class LineNumberRulerView: NSRulerView {
                         let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndexForGlyphLine, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
                         
                         if glyphLineCount > 0 {
-                            drawLineNumber("-", lineRect.minY + 10)
+                            drawLineNumber("-", lineRect.minY + 5)
                         } else {
-                            drawLineNumber("\(lineNumber)", lineRect.minY + 10)
+                            drawLineNumber("\(lineNumber)", lineRect.minY + 5)
                         }
                         
                         // Move to next glyph line
@@ -152,7 +152,7 @@ class LineNumberRulerView: NSRulerView {
                 
                 // Draw line number for the extra line at the end of the text
                 if layoutManager.extraLineFragmentTextContainer != nil {
-                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY + 10)
+                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY + 5)
                 }
             }
         }
