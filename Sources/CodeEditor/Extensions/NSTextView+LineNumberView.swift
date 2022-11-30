@@ -82,7 +82,7 @@ class LineNumberRulerView: NSRulerView {
         super.init(scrollView: textView.enclosingScrollView!, orientation: NSRulerView.Orientation.verticalRuler)
         self.font = textView.font ?? NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         self.clientView = textView
-        self.ruleThickness = 20
+        self.ruleThickness = 100
     }
     
     required init(coder: NSCoder) {
@@ -136,9 +136,9 @@ class LineNumberRulerView: NSRulerView {
                         let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndexForGlyphLine, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
                         
                         if glyphLineCount > 0 {
-                            drawLineNumber("-", lineRect.minY)
+                            drawLineNumber("-", lineRect.minY + 10)
                         } else {
-                            drawLineNumber("\(lineNumber)", lineRect.minY)
+                            drawLineNumber("\(lineNumber)", lineRect.minY + 10)
                         }
                         
                         // Move to next glyph line
@@ -152,7 +152,7 @@ class LineNumberRulerView: NSRulerView {
                 
                 // Draw line number for the extra line at the end of the text
                 if layoutManager.extraLineFragmentTextContainer != nil {
-                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY)
+                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY + 10)
                 }
             }
         }
