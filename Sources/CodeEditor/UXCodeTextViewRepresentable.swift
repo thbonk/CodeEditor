@@ -257,6 +257,7 @@ struct UXCodeTextViewRepresentable : UXViewRepresentable {
         textView.delegate = context.coordinator
       }
       textView.textContainerInset = inset
+        textView.lnv_framDidChange()
       updateTextView(textView)
     }
   #else // iOS etc

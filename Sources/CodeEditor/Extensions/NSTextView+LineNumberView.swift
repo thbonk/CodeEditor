@@ -46,8 +46,9 @@ extension NSTextView {
             font = NSFont.systemFont(ofSize: 16)
         }
         
-        lineNumberView = LineNumberRulerView(textView: self)
+    
         if let scrollView = enclosingScrollView {
+            lineNumberView = LineNumberRulerView(textView: self)
             scrollView.verticalRulerView = lineNumberView
             scrollView.hasVerticalRuler = true
             scrollView.rulersVisible = true
@@ -59,7 +60,7 @@ extension NSTextView {
         NotificationCenter.default.addObserver(self, selector: #selector(lnv_textDidChange), name: NSText.didChangeNotification, object: self)
     }
     
-    @objc func lnv_framDidChange(notification: NSNotification) {
+    @objc func lnv_framDidChange(notification: NSNotification? = nil) {
         
         lineNumberView.needsDisplay = true
     }
