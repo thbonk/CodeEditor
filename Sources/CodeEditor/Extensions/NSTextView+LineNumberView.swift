@@ -82,8 +82,7 @@ class LineNumberRulerView: NSRulerView {
         super.init(scrollView: textView.enclosingScrollView!, orientation: NSRulerView.Orientation.verticalRuler)
         self.font = textView.font ?? NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         self.clientView = textView
-        self.firstBaselineOffsetFromTop = 10
-        self.ruleThickness = 40
+        self.ruleThickness = 20
     }
     
     required init(coder: NSCoder) {
