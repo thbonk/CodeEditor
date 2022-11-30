@@ -72,6 +72,9 @@ extension NSTextView {
 
 class LineNumberRulerView: NSRulerView {
     
+    private let RuleThickness = 100.0
+    private let yOffset = 6.0
+    
     var font: NSFont! {
         didSet {
             self.needsDisplay = true
@@ -82,7 +85,7 @@ class LineNumberRulerView: NSRulerView {
         super.init(scrollView: textView.enclosingScrollView!, orientation: NSRulerView.Orientation.verticalRuler)
         self.font = textView.font ?? NSFont.systemFont(ofSize: NSFont.smallSystemFontSize)
         self.clientView = textView
-        self.ruleThickness = 100
+        self.ruleThickness = RuleThickness
     }
     
     required init(coder: NSCoder) {
@@ -100,7 +103,7 @@ class LineNumberRulerView: NSRulerView {
                 
                 let drawLineNumber = { (lineNumberString:String, y:CGFloat) -> Void in
                     let attString = NSAttributedString(string: lineNumberString, attributes: lineNumberAttributes)
-                    let x = 95 - attString.size().width
+                    let x = (self.RuleThickness - 5) - attString.size().width
                     attString.draw(at: NSPoint(x: x, y: relativePoint.y + y))
                 }
                 
@@ -136,9 +139,9 @@ class LineNumberRulerView: NSRulerView {
                         let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndexForGlyphLine, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
                         
                         if glyphLineCount > 0 {
-                            drawLineNumber("-", lineRect.minY + 5)
+                            drawLineNumber("-", lineRect.minY + yOffset)
                         } else {
-                            drawLineNumber("\(lineNumber)", lineRect.minY + 5)
+                            drawLineNumber("\(lineNumber)", lineRect.minY + yOffset)
                         }
                         
                         // Move to next glyph line
@@ -152,7 +155,7 @@ class LineNumberRulerView: NSRulerView {
                 
                 // Draw line number for the extra line at the end of the text
                 if layoutManager.extraLineFragmentTextContainer != nil {
-                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY + 5)
+                    drawLineNumber("\(lineNumber)", layoutManager.extraLineFragmentRect.minY + yOffset)
                 }
             }
         }
