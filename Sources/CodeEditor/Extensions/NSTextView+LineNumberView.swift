@@ -73,7 +73,7 @@ extension NSTextView {
 class LineNumberRulerView: NSRulerView {
     
     private let RuleThickness = 100.0
-    private let yOffset = 6.0
+    private let yOffset = 7.0
     
     var font: NSFont! {
         didSet {
